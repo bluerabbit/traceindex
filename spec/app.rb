@@ -12,7 +12,7 @@ module DummyApp
 end
 
 ActiveRecord::Base.establish_connection(
-  YAML.load(File.read('spec/database.yml'))['test']
+  YAML.load(ERB.new(File.read('spec/database.yml')).result)['test']
 )
 
 ActiveRecord::Schema.define version: 0 do
