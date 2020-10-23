@@ -17,8 +17,8 @@ ActiveRecord::Base.establish_connection(
 
 ActiveRecord::Schema.define version: 0 do
   create_table :users, force: true do |t|
-    t.integer :created_user_id, index: true
-    t.integer :updated_user_id, index: false
+    t.references :created_user,    foreign_key: { to_table: :users }
+    t.integer    :updated_user_id, index: false
   end
 end
 

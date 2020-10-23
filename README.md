@@ -29,6 +29,12 @@ If you want the rake task to fail when errors are found.
 % FAIL_ON_ERROR=1 rake traceindex
 ```
 
+If you want the rake task to ignore foreign_keys.
+
+```
+% IGNORE_FOREIGN_KEY=1 rake traceindex
+```
+
 ## How do I tell it to ignore columns?
 
 Create a .traceindex.yaml or .traceindex.yml file in your root directory.
@@ -41,6 +47,8 @@ ignore_models:
   - ActiveStorage::Attachment
   - ActionText::RichText
   - ActionMailbox::InboundEmail
+ignore_foreign_keys:
+  - users.created_user_id
 ```
 
 ## Copyright
