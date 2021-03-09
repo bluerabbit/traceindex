@@ -47,6 +47,7 @@ ignore_models:
   - ActiveStorage::Attachment
   - ActionText::RichText
   - ActionMailbox::InboundEmail
+  - ActiveStorage::VariantRecord
 ignore_foreign_keys:
   - users.created_user_id
 ```
