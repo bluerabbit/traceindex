@@ -2,7 +2,7 @@ $:.push File.expand_path('lib', __dir__)
 
 Gem::Specification.new do |s|
   s.name        = 'traceindex'
-  s.version     = '0.0.2'
+  s.version     = '0.1.0'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Akira Kusumoto']
   s.email       = ['akirakusumo10@gmail.com']

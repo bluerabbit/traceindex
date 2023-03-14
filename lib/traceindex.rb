@@ -12,6 +12,7 @@ class Traceindex
     @ignore_models       = []
     @ignore_columns      = []
     @ignore_foreign_keys = []
+    @ignore_tables       = []
 
     (config["ignore_models"] || []).each do |ignored_model|
       @ignore_models << ignored_model
@@ -23,6 +24,10 @@ class Traceindex
 
     (config["ignore_foreign_keys"] || []).each do |ignored_column|
       @ignore_foreign_keys << ignored_column
+    end
+
+    (config["ignore_tables"] || []).each do |ignore_table|
+      @ignore_tables << ignore_table
     end
   end
 
@@ -80,7 +85,7 @@ class Traceindex
 
     @app.eager_load!
     @models ||= ActiveRecord::Base.descendants.reject(&:abstract_class).reject do |model|
-      @ignore_models.include?(model.name)
+      @ignore_models.include?(model.name) || @ignore_tables.include?(model.table_name)
     end
   end
 end

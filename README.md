@@ -45,11 +45,12 @@ ignore_columns:
 ignore_models:
   - ActiveStorage::Blob
   - ActiveStorage::Attachment
-  - ActionText::RichText
   - ActionMailbox::InboundEmail
   - ActiveStorage::VariantRecord
 ignore_foreign_keys:
   - users.created_user_id
+ignore_tables:
+  - action_text_rich_texts
 ```
 
 ## Copyright
