@@ -42,6 +42,19 @@ describe Traceindex do
       end
     end
 
+    context 'If you have a configuration file(ignore_tables)' do
+      before do
+        File.open '.traceindex.yml', 'w' do |file|
+          file.puts 'ignore_tables:'
+          file.puts '  - users'
+        end
+      end
+
+      it 'missing index not found.' do
+        expect(traceindex.missing_index_column_names).to eq([])
+      end
+    end
+
     context 'If you have a configuration file(ignore_foreign_keys)' do
       before do
         File.open '.traceindex.yml', 'w' do |file|
