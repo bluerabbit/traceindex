@@ -9,26 +9,10 @@ class Traceindex
 
   def initialize(app)
     @app                 = app
-    @ignore_models       = []
-    @ignore_columns      = []
-    @ignore_foreign_keys = []
-    @ignore_tables       = []
-
-    (config["ignore_models"] || []).each do |ignored_model|
-      @ignore_models << ignored_model
-    end
-
-    (config["ignore_columns"] || []).each do |ignored_column|
-      @ignore_columns << ignored_column
-    end
-
-    (config["ignore_foreign_keys"] || []).each do |ignored_column|
-      @ignore_foreign_keys << ignored_column
-    end
-
-    (config["ignore_tables"] || []).each do |ignore_table|
-      @ignore_tables << ignore_table
-    end
+    @ignore_models       = (config["ignore_models"] || [])
+    @ignore_columns      = (config["ignore_columns"] || [])
+    @ignore_foreign_keys = (config["ignore_foreign_keys"] || [])
+    @ignore_tables       = (config["ignore_tables"] || [])
   end
 
   def missing_index_column_names
