@@ -9,21 +9,10 @@ class Traceindex
 
   def initialize(app)
     @app                 = app
-    @ignore_models       = []
-    @ignore_columns      = []
-    @ignore_foreign_keys = []
-
-    (config["ignore_models"] || []).each do |ignored_model|
-      @ignore_models << ignored_model
-    end
-
-    (config["ignore_columns"] || []).each do |ignored_column|
-      @ignore_columns << ignored_column
-    end
-
-    (config["ignore_foreign_keys"] || []).each do |ignored_column|
-      @ignore_foreign_keys << ignored_column
-    end
+    @ignore_models       = (config["ignore_models"] || [])
+    @ignore_columns      = (config["ignore_columns"] || [])
+    @ignore_foreign_keys = (config["ignore_foreign_keys"] || [])
+    @ignore_tables       = (config["ignore_tables"] || [])
   end
 
   def missing_index_column_names
@@ -80,7 +69,7 @@ class Traceindex
 
     @app.eager_load!
     @models ||= ActiveRecord::Base.descendants.reject(&:abstract_class).reject do |model|
-      @ignore_models.include?(model.name)
+      @ignore_models.include?(model.name) || @ignore_tables.include?(model.table_name)
     end
   end
 end
