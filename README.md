@@ -40,17 +40,16 @@ If you want the rake task to ignore foreign_keys.
 Create a .traceindex.yaml or .traceindex.yml file in your root directory.
 
 ```yaml
+ignore_tables:
+  - action_mailbox_inbound_emails
+  - action_text_rich_texts
+  - active_storage_attachments
+  - active_storage_blobs
+  - active_storage_variant_records
 ignore_columns:
   - users.created_user_id
-ignore_models:
-  - ActiveStorage::Blob
-  - ActiveStorage::Attachment
-  - ActionMailbox::InboundEmail
-  - ActiveStorage::VariantRecord
 ignore_foreign_keys:
   - users.created_user_id
-ignore_tables:
-  - action_text_rich_texts
 ```
 
 ## Copyright
